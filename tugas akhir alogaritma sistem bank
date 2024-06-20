@@ -1,0 +1,98 @@
+#include <stdio.h>
+
+//M.Istami Alfariski
+//12050516437
+
+// Function prototypes
+void checkBalance(int balance);
+void depositMoney(int *balance, int amount);
+void withdrawMoney(int *balance, int amount);
+int checkPin(int pin);
+
+int main() {
+    const char *bankName = "Bank M.Istami Alfariski (12050516437)";
+    int balance = 15000000;  // Initial balance
+    int choice;
+    int amount;
+    const int correctPin = 16437;  // The correct PIN for accessing the bank
+    int enteredPin;
+
+    printf("Selamat datang di %s\n", bankName);
+    printf("Masukkan PIN Anda: ");
+    scanf("%d", &enteredPin);
+
+    if (!checkPin(enteredPin)) {
+        printf("PIN yang Anda masukkan salah.\n");
+        return 0;
+    }
+
+    while (1) {
+        printf("\nMenu:\n");
+        printf("1. Cek Saldo\n");
+        printf("2. Setor Tunai\n");
+        printf("3. Tarik Tunai\n");
+        printf("4. Keluar\n");
+        printf("Pilihan Anda: ");
+        scanf("%d", &choice);
+
+        switch (choice) {
+            case 1:
+                checkBalance(balance);
+                break;
+            case 2:
+                printf("Masukkan jumlah yang ingin disetor: Rp ");
+                scanf("%d", &amount);
+                if (amount > 0) {
+                    depositMoney(&balance, amount);
+                } else {
+                    printf("Jumlah tidak valid.\n");
+                }
+                break;
+            case 3:
+                printf("Masukkan jumlah yang ingin ditarik: Rp ");
+                scanf("%d", &amount);
+                if (amount > 0) {
+                    withdrawMoney(&balance, amount);
+                } else {
+                    printf("Jumlah tidak valid.\n");
+                }
+                break;
+            case 4:
+                printf("Terima kasih telah menggunakan layanan %s.\n", bankName);
+                return 0;
+            default:
+                printf("Pilihan tidak valid.\n");
+        }
+    }
+
+    return 0;
+}
+
+// Function to check balance
+void checkBalance(int balance) {
+    printf("Saldo Anda: Rp %d\n", balance);
+}
+
+// Function to deposit money
+void depositMoney(int *balance, int amount) {
+    *balance += amount;
+    printf("Setor tunai sebesar Rp %d berhasil.\n", amount);
+    printf("Saldo Anda sekarang: Rp %d\n", *balance);
+}
+
+// Function to withdraw money
+void withdrawMoney(int *balance, int amount) {
+    if (*balance >= amount) {
+        *balance -= amount;
+        printf("Penarikan tunai sebesar Rp %d berhasil.\n", amount);
+        printf("Saldo Anda sekarang: Rp %d\n", *balance);
+    } else {
+        printf("Saldo tidak mencukupi untuk penarikan tunai.\n");
+    }
+}
+
+// Function to check if the entered PIN is correct
+int checkPin(int pin) {
+    const int correctPin = 16437;  // Correct PIN
+    return pin == correctPin;
+}
