@@ -3,7 +3,7 @@
 //M.Istami Alfariski
 //12050516437
 
-// Function prototypes
+
 void checkBalance(int balance);
 void depositMoney(int *balance, int amount);
 void withdrawMoney(int *balance, int amount);
@@ -11,10 +11,10 @@ int checkPin(int pin);
 
 int main() {
     const char *bankName = "Bank M.Istami Alfariski (12050516437)";
-    int balance = 15000000;  // Initial balance
+    int balance = 10000;  // saldo awal
     int choice;
     int amount;
-    const int correctPin = 16437;  // The correct PIN for accessing the bank
+    const int correctPin = 16437;  // pin inti untuk mengakses bnk
     int enteredPin;
 
     printf("Selamat datang di %s\n", bankName);
@@ -68,19 +68,19 @@ int main() {
     return 0;
 }
 
-// Function to check balance
+// untuk memeriksa keseimbangan
 void checkBalance(int balance) {
     printf("Saldo Anda: Rp %d\n", balance);
 }
 
-// Function to deposit money
+// untuk menyimpan uang
 void depositMoney(int *balance, int amount) {
     *balance += amount;
     printf("Setor tunai sebesar Rp %d berhasil.\n", amount);
     printf("Saldo Anda sekarang: Rp %d\n", *balance);
 }
 
-// Function to withdraw money
+// untuk menrarik uang
 void withdrawMoney(int *balance, int amount) {
     if (*balance >= amount) {
         *balance -= amount;
@@ -91,7 +91,7 @@ void withdrawMoney(int *balance, int amount) {
     }
 }
 
-// Function to check if the entered PIN is correct
+// memeriksa pin benar atau salah
 int checkPin(int pin) {
     const int correctPin = 16437;  // Correct PIN
     return pin == correctPin;
